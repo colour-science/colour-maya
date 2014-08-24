@@ -28,9 +28,9 @@ __maintainer__ = 'Colour Developers'
 __email__ = 'colour-science@googlegroups.com'
 __status__ = 'Production'
 
-__all__ = ['get_dag_path',
-           'get_mpoint',
-           'get_shapes',
+__all__ = ['dag_path',
+           'mpoint',
+           'shapes',
            'set_attributes',
            'RGB_to_Lab',
            'RGB_identity_cube',
@@ -38,7 +38,7 @@ __all__ = ['get_dag_path',
            'Lab_coordinates_system_representation']
 
 
-def get_dag_path(node):
+def dag_path(node):
     """
     Returns a dag path from given node.
 
@@ -60,7 +60,7 @@ def get_dag_path(node):
     return dag_path
 
 
-def get_mpoint(point):
+def mpoint(point):
     """
     Converts a tuple to MPoint.
 
@@ -78,7 +78,7 @@ def get_mpoint(point):
     return OpenMaya.MPoint(point[0], point[1], point[2])
 
 
-def get_shapes(object, full_path=False, no_intermediate=True):
+def shapes(object, full_path=False, no_intermediate=True):
     """
     Returns shapes of given object.
 
@@ -188,7 +188,7 @@ def RGB_identity_cube(name, density=20):
     vertex_colour_array = OpenMaya.MColorArray()
     vertex_index_array = OpenMaya.MIntArray()
     point_array = OpenMaya.MPointArray()
-    fn_mesh = OpenMaya.MFnMesh(get_dag_path(get_shapes(cube)[0]))
+    fn_mesh = OpenMaya.MFnMesh(dag_path(shapes(cube)[0]))
     fn_mesh.getPoints(point_array, OpenMaya.MSpace.kWorld)
     for i in range(point_array.length()):
         vertex_colour_array.append(point_array[i][0],
@@ -220,14 +220,14 @@ def Lab_colourspace_cube(colourspace, density=20):
     """
 
     cube = RGB_identity_cube(colourspace.name, density)
-    it_mesh_vertex = OpenMaya.MItMeshVertex(get_dag_path(cube))
+    it_mesh_vertex = OpenMaya.MItMeshVertex(dag_path(cube))
     while not it_mesh_vertex.isDone():
         position = it_mesh_vertex.position(OpenMaya.MSpace.kObject)
         it_mesh_vertex.setPosition(
-            get_mpoint(tuple(np.ravel(RGB_to_Lab((position[0],
-                                                  position[1],
-                                                  position[2],),
-                                                 colourspace)))))
+            mpoint(tuple(np.ravel(RGB_to_Lab((position[0],
+                                              position[1],
+                                              position[2],),
+                                             colourspace)))))
         it_mesh_vertex.next()
     set_attributes({'{0}.rotateX'.format(cube): 180,
                     '{0}.rotateZ'.format(cube): 90})
