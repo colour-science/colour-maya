@@ -152,7 +152,7 @@ def RGB_to_Lab(RGB, colourspace):
                        'CIE 1931 2 Degree Standard Observer').get('E'),
                    colourspace.to_XYZ,
                    'Bradford',
-                   colourspace.EOCF),
+                   colourspace.decoding_cctf),
         colourspace.whitepoint)
 
 
