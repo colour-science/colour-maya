@@ -44,7 +44,7 @@ def dag_path(node):
 
     Parameters
     ----------
-    node : str or unicode
+    node : unicode
         Node name.
 
     Returns
@@ -84,7 +84,7 @@ def shapes(object, full_path=False, no_intermediate=True):
 
     Parameters
     ----------
-    object : str or unicode
+    object : unicode
         Current object.
     full_path : bool, optional
         Current full path state.
@@ -162,7 +162,7 @@ def RGB_identity_cube(name, density=20):
 
     Parameters
     ----------
-    name : str or unicode
+    name : unicode
         Cube name.
     density : int, optional
         Cube divisions count.
