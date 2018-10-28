@@ -203,7 +203,7 @@ def RGB_identity_cube(name, density=20):
 
 def Lab_colourspace_cube(colourspace, density=20):
     """
-    Creates a *CIE L\*a\*b\** colourspace cube with geometric density.
+    Creates a *CIE L\\*a\\*b\\** colourspace cube with geometric density.
 
     Parameters
     ----------
@@ -215,7 +215,7 @@ def Lab_colourspace_cube(colourspace, density=20):
     Returns
     -------
     unicode
-        *CIE L\*a\*b\** Colourspace cube.
+        *CIE L\\*a\\*b\\** Colourspace cube.
     """
 
     cube = RGB_identity_cube(colourspace.name, density)
@@ -236,7 +236,7 @@ def Lab_colourspace_cube(colourspace, density=20):
 
 def Lab_coordinates_system_representation():
     """
-    Creates a *CIE L\*a\*b\** coordinates system representation.
+    Creates a *CIE L\\*a\\*b\\** coordinates system representation.
 
     Returns
     -------
